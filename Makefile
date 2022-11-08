@@ -1,16 +1,17 @@
+PROJECT = main
 CC = g++
-CFLAGS=-c
 
 all: main
 
-main: main.o Stack.o Functions.o
-		$(CC) main.o Stack.o Functions.o -o main
+$(PROJECT): main.o Functions.o
+	$(CC) main.o Functions.o -o $(PROJECT)
 
 main.o: main.cpp
-		$(CC)  $(CFLAGS) main.cpp -o main.o
+	$(CC) -c main.cpp -o main.o
 
-Functions.o: Functions.cpp
-		$(CC) $(CFLAGS) Functions.cpp -o Functions.o
+func.o: Functions.cpp
+	$(CC) -c Functions.cpp -o Functions.o
 
 clean:
-		rm *.o LABA2
+	rm -rf *.o $(PROJECT)
+
