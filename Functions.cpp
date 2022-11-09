@@ -44,7 +44,7 @@ bool Oper(Stack<Term> &Stack_n, Stack<Term> &Stack_o, Term &obj) {
         case '/':
             s2 = Stack_n.Top().value;
             if (s1 == 0) {
-                std::cerr << "\nНа 0 делить нельзя!\n";
+                std::cerr << "You can't divide by zero\n";
                 return false;
             } else {
                 Stack_n.Pop();
