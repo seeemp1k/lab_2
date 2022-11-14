@@ -168,14 +168,15 @@ int main(int argc, char **argv) {
     }
     if (strcmp(argv[1], "--reverse") == 0) {
         Stack<double> stack;
-        bool flag = true;
         char Ch;
-        do{
-            while(Ch = std::cin.peek(), Ch == ' ' || Ch == '\t') {
-                std::cin.ignore();
-            }
-            if(Ch == EOF || Ch == '\n' || Ch == '=') {
+        while (true){
+            Ch = std::cin.peek();
+            if (Ch == '\n' || Ch == EOF) {
                 break;
+            }
+            if (Ch == ' ') {
+                std::cin.ignore();
+                continue;
             }
             else {
                 double m;
@@ -188,23 +189,24 @@ int main(int argc, char **argv) {
                     stack.Pop();
                     switch (Ch) {
                         case '+':
-                            s1 += s2;
+                            s1 = s1 + s2;
                             break;
                         case '-':
-                            s1 -= s2;
+                            s1 = s1 - s2;
                             break;
                         case '*':
-                            s1 *= s2;
+                            s1 = s1 * s2;
                             break;
                         case '/':
-                            s1 /= s2;
+                            s1 = s1 / s2;
                             break;
                         default:
                             break;
                     }
                     stack.Push(s1);
                     std::cin.clear();
-                    if(Ch=std::cin.peek(), Ch!=EOF && Ch!= '\n'){
+                    Ch=std::cin.peek();
+                    if(Ch!=EOF && Ch!= '\n'){
                         std::cin.get();
                     }
                 }
@@ -212,9 +214,9 @@ int main(int argc, char **argv) {
                     stack.Push(m);
                 }
             }
-        } while(flag);
+        }
 
-        std::cout << stack.Top() << std::endl;
+        std::cout << stack.Top();
 
         return 0;
     }
