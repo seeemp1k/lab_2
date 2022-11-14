@@ -7,13 +7,6 @@ template<typename T>
 class Stack {
 public:
 
-    Stack& operator=(Stack &) = delete;
-    Stack(Stack &) = delete;
-    Stack& operator=(Stack &&) noexcept = default;
-    Stack(Stack &&) noexcept = default;
-    Stack() = default;
-
-
     void Push(T value) {
         last_ = new Node{.value = value, .left = last_};
         ++size_;
